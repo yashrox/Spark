@@ -8,13 +8,18 @@ Script to start server => npm run start  (It will create a build and start the n
 
 APIS -> Register , Login , List , Logout.
 
-Data For Regsiter :  1) Basic Auth 
+Data For Regsiter  
+
+                     1) Basic Auth 
                      
                      2) Raw Body  { name , phone_number , email , primary_filed: 1 | 2 , device_type: 1 | 2 | 3 , device_token , gender, country, password}
                      
                      3) POST Request
                      
-Data For Login :     1) Basic Auth
+Data For Login
+
+
+                      1) Basic Auth
                      
                      2) Raw Body {user , primary_filed: 1 | 2 , password}   
                      
