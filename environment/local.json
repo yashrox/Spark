@@ -1,0 +1,11 @@
+{
+    "name": "local",
+    "port": 3000,
+    "url": "http://localhost:3000",
+    "mongodb": {
+        "uri": "mongodb://localhost:27017/spark-assignment",
+        "usr": "",
+        "pwd": ""
+    },
+    "saltRound": 10
+}
