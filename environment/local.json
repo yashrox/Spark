@@ -7,5 +7,6 @@
         "usr": "",
         "pwd": ""
     },
-    "saltRound": 10
+    "saltRound": 10,
+    "secrets": "aHR0cDovL2xvY2FsaG9zdDoaHR0cDovL2xvY2FsaG9zdDo"
 }

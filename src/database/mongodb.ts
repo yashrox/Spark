@@ -1,10 +1,9 @@
-import * as documentModels from '@app/app.models';
+// import * as documentModels from '@app/app.models';
 import {Document, Model} from 'mongoose';
 
 export class DaoManager {
     protected Model: any;
     constructor(model: Model<any>) {
-        console.log(documentModels);
         this.Model = model;
     }
 
@@ -13,17 +12,18 @@ export class DaoManager {
         return result;
     }
 
-	async create(data: any) {
-		return await this.Model.create(data).exec();
+	async create(data: any): Promise<any> {
+		return await this.Model.create(data);
 	}
 
-	async count(query: any) {
-		return !!await this.Model.count(query).exec();
+	async count(query: any): Promise<number | boolean> {
+		return !! await this.Model.countDocuments(query);
 	}
 
     async findOne(query: any, projection: any, options: any, populateQuery: any) {
 		try {
 			if (!populateQuery) { // populate
+				console.log('.........populate');
 				return await this.Model.findOne(query, projection, options).populate(populateQuery).exec();
 			} else {
 				return await this.Model.findOne(query, projection, options);

@@ -4,6 +4,7 @@ import * as cors from 'cors';
 import * as helmet from 'helmet';
 import { MongoError } from 'mongodb';
 import { connect, connection, set, ConnectionOptions } from 'mongoose';
+import {apiRoutes} from '../app/app.routes';
 
 class Application {
     private instance = express();
@@ -29,6 +30,7 @@ class Application {
         await Promise.all([
             this.initDatabase(),
         ]);
+        this.instance.use(apiRoutes.path, apiRoutes.router);
     }
 
     async initDatabase() {
@@ -55,7 +57,7 @@ class Application {
         this.instance.use((err: any, req: express.Request,
             res: express.Response, next: express.NextFunction) => {
             console.error('...ERROR MIddleware....', err);
-            res.status(500).send('Something broke!');
+            res.status(err.status || err).send(err.message || 'Something broke!');
         });
     }
 }

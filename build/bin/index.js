@@ -14,6 +14,7 @@ const env_utils_1 = require("../utils/env.utils");
 const cors = require("cors");
 const helmet = require("helmet");
 const mongoose_1 = require("mongoose");
+const app_routes_1 = require("../app/app.routes");
 class Application {
     constructor() {
         this.instance = express();
@@ -37,6 +38,7 @@ class Application {
             yield Promise.all([
                 this.initDatabase(),
             ]);
+            this.instance.use(app_routes_1.apiRoutes.path, app_routes_1.apiRoutes.router);
         });
     }
     initDatabase() {
@@ -63,7 +65,7 @@ class Application {
         this.instance.use(express.urlencoded());
         this.instance.use((err, req, res, next) => {
             console.error('...ERROR MIddleware....', err);
-            res.status(500).send('Something broke!');
+            res.status(err.status || err).send(err.message || 'Something broke!');
         });
     }
 }
